@@ -1,9 +1,8 @@
 module.exports = {
   verbose: true,
-  automock: false,
   collectCoverage: !!process.env.TRAVIS || !!process.env.COVERAGE,
   collectCoverageFrom: [
-    'src/**/*.js',
+    'src/**/*.ts',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
@@ -11,6 +10,13 @@ module.exports = {
     '__mocks__',
     '__tests__',
   ],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
   coverageDirectory: './coverage',
   projects: ['<rootDir>'],
+  setupFiles: ['dotenv/config'],
+  testMatch: [
+    '<rootDir>/src/**/__tests__/**/*.ts',
+  ],
 };
